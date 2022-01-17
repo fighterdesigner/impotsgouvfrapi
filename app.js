@@ -5,12 +5,16 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+    res.status(200).send("Welcome to our api");
+})
+
 app.post("/api", async (req, res) => {
  if(!req.body.numeroFiscal || !req.body.referenceDeLavis) {
-     res.status(400).send("Numéro fiscal ou référence de l'avis pas trouvé")
+     res.status(400).send("Numéro fiscal ou référence de l'avis pas trouvé");
  }
  const incinfo = await scraping(req.body.numeroFiscal, req.body.referenceDeLavis);
- res.status(201).send(incinfo)
+ res.status(201).send(incinfo);
 })
 
 let incInfo = {}
