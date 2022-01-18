@@ -1,6 +1,6 @@
 # impotsgouvfrapi
 ## Usage
-clone the project to your machine or server and then:
+clone the project to your machine and then:
 
 ```bash
 npm i
