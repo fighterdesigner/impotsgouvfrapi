@@ -1,9 +1,9 @@
 var express = require('express');
-var svair = require('./');
+var Svair = require('./');
 
 var app = express();
 
-app.get('/', function (req, res, next) {
+app.get('/api', function (req, res) {
     if (!req.query.numeroFiscal || !req.query.referenceAvis) {
         return res.status(400).send({
             code: 400,
@@ -11,15 +11,13 @@ app.get('/', function (req, res, next) {
             explaination: 'Les paramètres numeroFiscal et referenceAvis doivent être fournis dans la requête.'
         });
     } else {
-        svair(req.query.numeroFiscal, req.query.referenceAvis, function (err, result) {
+        Svair(req.query.numeroFiscal, req.query.referenceAvis, function (err, result) {
             if (err && err.message === 'Invalid credentials') {
                 res.status(404).send({
                     code: 404,
                     message: 'Résultat non trouvé',
                     explaination: 'Les paramètres fournis sont incorrects ou ne correspondent pas à un avis'
                 });
-            } else if (err) {
-                next(err);
             } else {
                 res.send(result);
             }
@@ -27,4 +25,4 @@ app.get('/', function (req, res, next) {
     }
 });
 
-app.listen(process.env.PORT);
+app.listen(4000, () => console.log("server is working"));

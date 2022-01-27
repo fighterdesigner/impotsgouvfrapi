@@ -21,7 +21,7 @@ function isNumeric(n) {
 module.exports.euro = parseEuro
 
 
-module.exports.result = function parseResult(html, year, callback) {
+module.exports.result = function parseResult(html, year) {
   var doc = new dom({
     errorHandler: {
       warning: () => {},
@@ -75,7 +75,7 @@ module.exports.result = function parseResult(html, year, callback) {
   var mappingBySrc = _.keyBy(compactedMapping, 'src');
 
   if (select('//*[@id="nonTrouve"]', doc).length) {
-    return callback(new Error('Invalid credentials'));
+    return;
   }
 
   var docRow = select('//*[@id="principal"]//h:table//h:tr', doc)
@@ -160,8 +160,8 @@ module.exports.result = function parseResult(html, year, callback) {
   }
 
   if(!result.declarant1.nom) {
-    return callback(new Error("Parsing error"))
+    return
   }
-  callback(null, result)
+  return result;
 
 }

@@ -1,5 +1,5 @@
 {
-  "name": "svair-api",
+  "name": "svair",
   "version": "2.1.0",
   "description": "Small JSON API over SVAIR",
   "main": "index.js",
@@ -7,7 +7,8 @@
     "example": "example"
   },
   "scripts": {
-    "test": "istanbul cover --print details _mocha -- -R spec test --timeout 10000"
+    "test": "istanbul cover --print details _mocha -- -R spec test --timeout 10000",
+    "dev-serve": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,8 +27,12 @@
   },
   "homepage": "https://github.com/betagouv/svair-api",
   "dependencies": {
+    "body-parser": "^1.19.1",
+    "dotenv": "^11.0.0",
     "lodash": "^4.17.11",
+    "nodemon": "^2.0.15",
     "request": "^2.88.0",
+    "svair-api": "^0.7.0",
     "xmldom": "^0.6.0",
     "xpath": "0.0.24"
   },
